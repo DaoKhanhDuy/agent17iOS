@@ -41,7 +41,7 @@ jobs:
     #    E.g.: /export_templates/4.4.1.stable/ios.zip
     - name: Download and install iOS export template from Dropbox
       run: |
-        templates_root="$HOME/Library/Application Support/Godot/export_templates/4.3-stable"
+        templates_root="$HOME/Library/Application Support/Godot/export_templates/4.3.stable"
         mkdir -p "$templates_root"
         curl -L "https://dl.dropboxusercontent.com/scl/fi/qg4ofedro2xsr0wtyz6sd/ios.zip?rlkey=avw6jlbtcztrenumz9wb2nwd9&dl=1" -o "$templates_root/ios.zip"
 
