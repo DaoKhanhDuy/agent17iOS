@@ -27,11 +27,13 @@ jobs:
           -o godot.zip
         unzip -q godot.zip -d godot
 
-    - name: Install export templates
+    - name: Download and install iOS export templates
       run: |
-        templates_root="$HOME/Library/Application Support/Godot/export_templates"
+        templates_root="$HOME/Library/Application Support/Godot/export_templates/4.3"
         mkdir -p "$templates_root"
-        cp -R export_templates/. "$templates_root"
+        curl -L "https://downloads.tuxfamily.org/godotengine/4.3/Godot_v4.3-stable_export_templates.tpz" -o ios_templates.tpz
+        unzip -q ios_templates.tpz -d tmp_templates
+        cp tmp_templates/templates/ios.zip "$templates_root/ios.zip"
 
     - name: Export Xcode project
       run: |
