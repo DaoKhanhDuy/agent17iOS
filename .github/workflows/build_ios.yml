@@ -39,11 +39,11 @@ jobs:
     #    The ios.zip template must be stored in folder called export_templates/{godot-version}/
     #    The godot version uses a dash in the name but export template uses a dot.
     #    E.g.: /export_templates/4.4.1.stable/ios.zip
-    - name: Install iOS export template
+    - name: Download and install iOS export template from Dropbox
       run: |
-        templates_root="$HOME/Library/Application Support/Godot/export_templates"
+        templates_root="$HOME/Library/Application Support/Godot/export_templates/4.3"
         mkdir -p "$templates_root"
-        cp -R "export_templates/." "$templates_root/"
+        curl -L "https://dl.dropboxusercontent.com/scl/fi/qg4ofedro2xsr0wtyz6sd/ios.zip?rlkey=avw6jlbtcztrenumz9wb2nwd9&dl=1" -o "$templates_root/ios.zip"
 
     # 3. Export preset -> Xcode project
     #    TODO: In addition to other mandatory fields (try running the export locally first),
