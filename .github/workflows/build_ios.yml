@@ -17,7 +17,6 @@ env:
 jobs:
   build-ios:
     runs-on: macos-14      # Apple Silicon runner w/ Xcode 16
-    timeout-minutes: 300
 
     steps:
     # 0. Pull repo
