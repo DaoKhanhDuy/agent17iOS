@@ -1,9 +1,7 @@
 name: Build iOS (unsigned IPA)
 
 # Run on every push to main + on demand (workflow_dispatch)
-on:
-  push:
-    [workflow_dispatch]
+on: [workflow_dispatch]
 
 env:
   # ----- project-specific knobs -----
