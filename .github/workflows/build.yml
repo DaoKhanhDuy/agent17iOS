@@ -1,109 +1,86 @@
-# ========== CONFIG ========== #
+name: Build iOS IPA (Auto Detect)
 
-# You just need to follow the instructions to edit this CONFIG section.
-
-# Dont do anything to this env: word.
+on:
+  push:
+  workflow_dispatch:
 
 env:
-
-  # Everything you need to edit just NAME: and LINK: here to build IPA.
-
-  # Name your app here, it must have the same name in your .xcodeproj, .xcarchive, etc. files.
-
-  NAME: Agent170259 # Change this.
-
-  # Enter the direct download link for the compressed .xcodeproj, .xcarchive, etc. files (into a .zip file) here.
-
-  LINK: https://my.microsoftpersonalcontent.com/personal/cfe742303ee3e675/_layouts/15/download.aspx?UniqueId=5ad4961c-375b-4649-901a-4924934531e5&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiJjNzgyNGZjMS03YTY2LTQyZTMtYTgyYy1iY2FjNWE0MjA4NmYiLCJhdWQiOiIwMDAwMDAwMy0wMDAwLTBmZjEtY2UwMC0wMDAwMDAwMDAwMDAvbXkubWljcm9zb2Z0cGVyc29uYWxjb250ZW50LmNvbUA5MTg4MDQwZC02YzY3LTRjNWItYjExMi0zNmEzMDRiNjZkYWQiLCJleHAiOiIxNzY3NDY5MzgyIn0.djGaHW32FByjWlmjCUzvCW9cA-jIFNNVClp3blNEXRG66jJ4Z9_gHFynaAd5WkvnLs1idKtDFajgMPxxTziAgoxjMjsJ6MJ3UNfMH5oVqoPZhVluS4ANPpjsy4mT9-hn0-x0DUasmIRgHSMFMTZ82q3a6CxMXfWbQT735Ykro8dfTcKsWErPbC-HzzYdYILm4yaajp6oRbcmwVb4BWVEfnDvXEsy2T8E7Wp5lnNJPVKxMgEqPXcDdOuryCsqJSKFmTkcBhY2Y1ZkFTpF3mWms7i0m2y0PZPDMHhA5hLSH5BP3BuS8SV1PQMflczJzaev37lyfDK2Qey7KQOIveC-0jzaqXFWStNypbdWiTGlkY2r_qM6pQYRdQ3YlyeWGB3qmyE4IpM89PZsrPS5eNELc65Wq5CNlWxH5lueldayLl-JAkvyYbMEDZ74v1hIxkZa3s2of4LH9CQfN2_ohwWgToRlSDhz71SsQH_l5D2AF3T8Bnod0OypM0EEzK3f-k2SenqYQEpkyw4ENuN823tG9g.TLd77e8fcv5Rtr-AdL61oNVRrHH5HsjDuchjLhBK-rU&ApiVersion=2.0 # Change this.
-
-# That's it, just run this .yml file.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# You don't need to worry about or edit anything below; just follow the instructions for editing the CONFIG section above.
-
-# ========== BUILD ========== #
-
-name: "Build iOS Unsigned IPA"
-
-on: [push]
+  # Chỉ cần đổi LINK này
+  LINK: "https://my.microsoftpersonalcontent.com/personal/cfe742303ee3e675/_layouts/15/download.aspx?UniqueId=5ad4961c-375b-4649-901a-4924934531e5&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiJjNzgyNGZjMS03YTY2LTQyZTMtYTgyYy1iY2FjNWE0MjA4NmYiLCJhdWQiOiIwMDAwMDAwMy0wMDAwLTBmZjEtY2UwMC0wMDAwMDAwMDAwMDAvbXkubWljcm9zb2Z0cGVyc29uYWxjb250ZW50LmNvbUA5MTg4MDQwZC02YzY3LTRjNWItYjExMi0zNmEzMDRiNjZkYWQiLCJleHAiOiIxNzY3NDY5MzgyIn0.djGaHW32FByjWlmjCUzvCW9cA-jIFNNVClp3blNEXRG66jJ4Z9_gHFynaAd5WkvnLs1idKtDFajgMPxxTziAgoxjMjsJ6MJ3UNfMH5oVqoPZhVluS4ANPpjsy4mT9-hn0-x0DUasmIRgHSMFMTZ82q3a6CxMXfWbQT735Ykro8dfTcKsWErPbC-HzzYdYILm4yaajp6oRbcmwVb4BWVEfnDvXEsy2T8E7Wp5lnNJPVKxMgEqPXcDdOuryCsqJSKFmTkcBhY2Y1ZkFTpF3mWms7i0m2y0PZPDMHhA5hLSH5BP3BuS8SV1PQMflczJzaev37lyfDK2Qey7KQOIveC-0jzaqXFWStNypbdWiTGlkY2r_qM6pQYRdQ3YlyeWGB3qmyE4IpM89PZsrPS5eNELc65Wq5CNlWxH5lueldayLl-JAkvyYbMEDZ74v1hIxkZa3s2of4LH9CQfN2_ohwWgToRlSDhz71SsQH_l5D2AF3T8Bnod0OypM0EEzK3f-k2SenqYQEpkyw4ENuN823tG9g.TLd77e8fcv5Rtr-AdL61oNVRrHH5HsjDuchjLhBK-rU&ApiVersion=2.0"
 
 jobs:
-
   build_ios:
-
     runs-on: macos-14
 
     steps:
-
       - name: Checkout repository
-
         uses: actions/checkout@v4
 
-      - name: Build archive and ipaify
-
+      - name: Download & unzip
         run: |
-
           set -xe
-
-          wget -O archive.zip "${LINK}"
-
+          curl -L --fail -o archive.zip "$LINK"
+          ls -lh archive.zip
           unzip -o archive.zip -d .
 
-          xcodebuild -list -project "${NAME}.xcodeproj"
+          echo "=== Found workspaces/projects ==="
+          find . -maxdepth 6 -name "*.xcworkspace" -print || true
+          find . -maxdepth 6 -name "*.xcodeproj" -print || true
 
-          xcodebuild archive \
+      - name: Build archive (auto detect)
+        run: |
+          set -xe
 
-            -project "${NAME}.xcodeproj" \
+          WS=$(find . -maxdepth 6 -name "*.xcworkspace" -print -quit || true)
+          PJ=$(find . -maxdepth 6 -name "*.xcodeproj" -print -quit || true)
 
-            -scheme "${NAME}" \
+          if [ -n "$WS" ]; then
+            echo "✅ Using workspace: $WS"
+            xcodebuild -list -workspace "$WS"
+            SCHEME=$(xcodebuild -list -workspace "$WS" | awk '/Schemes:/{f=1;next} f && NF{print $1; exit}')
+            echo "✅ Using scheme: $SCHEME"
+            xcodebuild archive \
+              -workspace "$WS" \
+              -scheme "$SCHEME" \
+              -archivePath build.xcarchive \
+              -configuration Release \
+              CODE_SIGNING_ALLOWED=NO \
+              CODE_SIGNING_REQUIRED=NO
+          elif [ -n "$PJ" ]; then
+            echo "✅ Using project: $PJ"
+            xcodebuild -list -project "$PJ"
+            SCHEME=$(xcodebuild -list -project "$PJ" | awk '/Schemes:/{f=1;next} f && NF{print $1; exit}')
+            echo "✅ Using scheme: $SCHEME"
+            xcodebuild archive \
+              -project "$PJ" \
+              -scheme "$SCHEME" \
+              -archivePath build.xcarchive \
+              -configuration Release \
+              CODE_SIGNING_ALLOWED=NO \
+              CODE_SIGNING_REQUIRED=NO
+          else
+            echo "❌ No .xcworkspace/.xcodeproj found in zip"
+            exit 1
+          fi
 
-            -archivePath "${NAME}.xcarchive" \
+      - name: Make IPA
+        run: |
+          set -xe
+          APP_PATH=$(find "build.xcarchive/Products/Applications" -maxdepth 1 -name "*.app" -print -quit)
+          if [ -z "$APP_PATH" ]; then
+            echo "❌ .app not found inside archive"
+            find build.xcarchive -maxdepth 6 -name "*.app" -print || true
+            exit 1
+          fi
 
-            -configuration Release \
+          mkdir -p Payload
+          mv "$APP_PATH" Payload/
+          zip -r app.ipa Payload
+          ls -lh app.ipa
 
-            CODE_SIGNING_ALLOWED=NO \
-
-            CODE_SIGNING_REQUIRED=NO
-
-          PATH="${NAME}.xcarchive/Products/Applications"/*.app
-
-          mkdir Payload
-
-          mv ${PATH} Payload/
-
-          zip -r "${NAME}-iOS.ipa" Payload
-
-          mv "${NAME}-iOS.ipa" "${{ runner.temp }}/${NAME}-iOS.ipa"
-
-      - name: Upload application
-
+      - name: Upload IPA
         uses: actions/upload-artifact@v4
-
         with:
-
-          name: "${NAME}"
-
-          path: ${{ runner.temp }}/${NAME}-iOS.ipa
-
+          name: iOS-IPA
+          path: app.ipa
           retention-days: 3
-
-# ========== END ========== #
