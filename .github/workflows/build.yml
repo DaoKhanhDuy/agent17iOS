@@ -10,7 +10,7 @@ env:
 
   # Name your app here, it must have the same name in your .xcodeproj, .xcarchive, etc. files.
 
-  NAME: Agent17 # Change this.
+  NAME: AGENT17IOS # Change this.
 
   # Enter the direct download link for the compressed .xcodeproj, .xcarchive, etc. files (into a .zip file) here.
 
