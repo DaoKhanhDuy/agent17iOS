@@ -1,109 +1,67 @@
-# ========== CONFIG ========== #
-
-# You just need to follow the instructions to edit this CONFIG section.
-
-# Dont do anything to this env: word.
-
 env:
-
-  # Everything you need to edit just NAME: and LINK: here to build IPA.
-
-  # Name your app here, it must have the same name in your .xcodeproj, .xcarchive, etc. files.
-
-  NAME: Agent170259 # Change this.
-
-  # Enter the direct download link for the compressed .xcodeproj, .xcarchive, etc. files (into a .zip file) here.
-
-  LINK: https://my.microsoftpersonalcontent.com/personal/cfe742303ee3e675/_layouts/15/download.aspx?UniqueId=c6cff4d9-d88c-423d-878f-55517166f0c4&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiJjNzgyNGZjMS03YTY2LTQyZTMtYTgyYy1iY2FjNWE0MjA4NmYiLCJhdWQiOiIwMDAwMDAwMy0wMDAwLTBmZjEtY2UwMC0wMDAwMDAwMDAwMDAvbXkubWljcm9zb2Z0cGVyc29uYWxjb250ZW50LmNvbUA5MTg4MDQwZC02YzY3LTRjNWItYjExMi0zNmEzMDRiNjZkYWQiLCJleHAiOiIxNzY3NTA3NTMyIn0.f5PY1GZaqXGKAVnmwp9TmBYo75OKepmIGvyKC3VIYtm66zG12neRgboAxsfrhdDyfS7QgWDSCcVLzPqH5N-e_D5Ok0zWWJ6_MeR7Mm6VB6qyPb0UwHN27Z1AlFukpKfFnRX5B7jva_OWDa8Orj4UA0ntuihNTbJXLRnN6J1owXjnRL-OomcugU0g5K0Na7DClA1KLZ844pJdPUtQqcgsnS_VrPh2U6s7MQzxMY1LR2yWyJS8wDJNEZaMAsEYdqp-TdP7fQTdUJ8WKipN7k2DHmc8abmMfVnXBYnVCJOt-bMBt0YxDY8hrWIO_tknKdhj1occ92ixxAIqjumRavkXmvR6DCL5p8_6O1DMGZCXRLFrg1-bk8HSO3v77wlClYzHDYHnMCe-vVBE5cTZ83Ea5unfjZfGrSq8HyIiDcLFkP4hUlL7jMuWEJH8ZROTI9NpL2c00fq-bdNm7YZBfTGYqlA9etnbhudYqP_N6ZOVghv54Co9CWRC8UAODUYTJanwNKv8tPh5eg6Gvbb5_RdTcg.WySTWaE2rfh5K520KJRh-PX7Jr4KEAYw6f-_DerMMP0&ApiVersion=2.0 # Change this.
-
-# That's it, just run this .yml file.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# You don't need to worry about or edit anything below; just follow the instructions for editing the CONFIG section above.
-
-# ========== BUILD ========== #
+  NAME: Agent170259
+  LINK: "https://my.microsoftpersonalcontent.com/personal/cfe742303ee3e675/_layouts/15/download.aspx?UniqueId=c6cff4d9-d88c-423d-878f-55517166f0c4&Translate=false&tempauth=v1e.eyJzaXRlaWQiOiJjNzgyNGZjMS03YTY2LTQyZTMtYTgyYy1iY2FjNWE0MjA4NmYiLCJhdWQiOiIwMDAwMDAwMy0wMDAwLTBmZjEtY2UwMC0wMDAwMDAwMDAwMDAvbXkubWljcm9zb2Z0cGVyc29uYWxjb250ZW50LmNvbUA5MTg4MDQwZC02YzY3LTRjNWItYjExMi0zNmEzMDRiNjZkYWQiLCJleHAiOiIxNzY3NTA3NTMyIn0.f5PY1GZaqXGKAVnmwp9TmBYo75OKepmIGvyKC3VIYtm66zG12neRgboAxsfrhdDyfS7QgWDSCcVLzPqH5N-e_D5Ok0zWWJ6_MeR7Mm6VB6qyPb0UwHN27Z1AlFukpKfFnRX5B7jva_OWDa8Orj4UA0ntuihNTbJXLRnN6J1owXjnRL-OomcugU0g5K0Na7DClA1KLZ844pJdPUtQqcgsnS_VrPh2U6s7MQzxMY1LR2yWyJS8wDJNEZaMAsEYdqp-TdP7fQTdUJ8WKipN7k2DHmc8abmMfVnXBYnVCJOt-bMBt0YxDY8hrWIO_tknKdhj1occ92ixxAIqjumRavkXmvR6DCL5p8_6O1DMGZCXRLFrg1-bk8HSO3v77wlClYzHDYHnMCe-vVBE5cTZ83Ea5unfjZfGrSq8HyIiDcLFkP4hUlL7jMuWEJH8ZROTI9NpL2c00fq-bdNm7YZBfTGYqlA9etnbhudYqP_N6ZOVghv54Co9CWRC8UAODUYTJanwNKv8tPh5eg6Gvbb5_RdTcg.WySTWaE2rfh5K520KJRh-PX7Jr4KEAYw6f-_DerMMP0&ApiVersion=2.0"
 
 name: "Build iOS Unsigned IPA"
-
 on: [push]
 
 jobs:
-
   build_ios:
-
     runs-on: macos-14
-
     steps:
-
       - name: Checkout repository
-
         uses: actions/checkout@v4
 
       - name: Build archive and ipaify
-
         run: |
-
           set -xe
 
-          wget -O archive.zip "${LINK}"
+          echo "=== Disk before download ==="
+          df -h
 
+          # Download (curl -L ổn định hơn wget trên macOS runner)
+          curl -L --fail -o archive.zip "${LINK}"
+          ls -lh archive.zip
+
+          echo "=== Test zip integrity ==="
+          unzip -t archive.zip
+
+          echo "=== Unzip ==="
           unzip -o archive.zip -d .
+          rm -f archive.zip   # giải phóng dung lượng ngay
+
+          echo "=== Disk after unzip ==="
+          df -h
+
+          # Tìm thư mục chứa .xcodeproj
+          PROJ_DIR="$(dirname "$(find . -maxdepth 4 -name "${NAME}.xcodeproj" -print -quit)")"
+          echo "PROJ_DIR=$PROJ_DIR"
+          cd "$PROJ_DIR"
 
           xcodebuild -list -project "${NAME}.xcodeproj"
 
+          # (Scheme đôi khi không trùng NAME) -> tự lấy scheme đầu tiên nếu cần
+          SCHEME="$(xcodebuild -list -project "${NAME}.xcodeproj" | awk '/Schemes:/{f=1;next} f && NF{print; exit}')"
+          echo "SCHEME=$SCHEME"
+
           xcodebuild archive \
-
             -project "${NAME}.xcodeproj" \
-
-            -scheme "${NAME}" \
-
+            -scheme "${SCHEME:-$NAME}" \
             -archivePath "${NAME}.xcarchive" \
-
             -configuration Release \
-
+            -destination "generic/platform=iOS" \
             CODE_SIGNING_ALLOWED=NO \
-
             CODE_SIGNING_REQUIRED=NO
 
-          PATH="${NAME}.xcarchive/Products/Applications"/*.app
-
-          mkdir Payload
-
-          mv ${PATH} Payload/
-
+          APP_PATH="${NAME}.xcarchive/Products/Applications"/*.app
+          mkdir -p Payload
+          mv ${APP_PATH} Payload/
           zip -r "${NAME}-iOS.ipa" Payload
-
           mv "${NAME}-iOS.ipa" "${{ runner.temp }}/${NAME}-iOS.ipa"
 
       - name: Upload application
-
         uses: actions/upload-artifact@v4
-
         with:
-
-          name: "${NAME}"
-
-          path: ${{ runner.temp }}/${NAME}-iOS.ipa
-
+          name: "${{ env.NAME }}"
+          path: ${{ runner.temp }}/${{ env.NAME }}-iOS.ipa
           retention-days: 3
-
-# ========== END ========== #
